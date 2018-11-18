@@ -100,15 +100,9 @@ classdef PlottingClass
            %set(gca,'FontSize',20);
            
            % save the figure
-           type = '.png';
-           tog = strcat(obj.newname, ' freqdomain', type);
-           slash = '/';
-           loc = strcat(obj.imagedir, 'Images', slash, tog);
-           saveas(thisone, loc);
-           pause(obj.figs)
-           close(thisone);
-           
-           %% Decibal Magnitude - Subsection (C&W)
+           thisplot = ' - freqdomain';
+           obj.Putintofiles(thisone, thisplot);          
+           %% Decibal Magnitude
            thisone2 = figure;
            set(thisone2, 'Visible', obj.figs);
            
@@ -140,15 +134,8 @@ classdef PlottingClass
            ylabel('Decibal Magnitude (dB)','fontsize',15);
            %set(gca,'FontSize',20);
            
-           type = '.png';
-           tog = strcat(obj.newname, ' db', type);
-           slash = '/';
-           loc = strcat(obj.imagedir, 'Images', slash, tog);
-           saveas(thisone2, loc);
-           pause(obj.figs)
-           close(thisone2);
-           
-           
+           thisplot = ' - db';
+           obj.Putintofiles(thisone2, thisplot);         
        end
        
       function lowpass = filtering(obj, s, name)
@@ -248,13 +235,9 @@ classdef PlottingClass
 
     axis([.5 100 -120 0])
 
-    type = '.png';
-    tog = strcat(obj.newname, ' - spectra', type);
-    slash = '/';
-    loc = strcat(obj.imagedir, 'Images', slash, tog);
-    saveas(h, loc);
-    pause(obj.figs)
-    close(h);
+    
+    thisplot = ' - spectra';
+    obj.Putintofiles(h, thisplot);
       end
         %% Raw Data - Cook and Hartzler
       function Plotting = Data(obj)
@@ -287,18 +270,23 @@ classdef PlottingClass
         ylabel('Pressure [Pa]','fontsize',15)
         %set(gca,'FontSize',20);
 
-        %thisplot = 'rawdata - ';
+        thisplot = 'rawdata - ';
+        obj.Putintofiles(l, thisplot);
+        % end the plotting function
+      end
+      
+      %% Save the figures
+      function Saving = Putintofiles(obj, thisone, thisplot)
         type = '.png';
-        tog = strcat(obj.newname, ' - rawdata', type);
+        tog = strcat(obj.newname, thisplot, type);
         slash = '/';
         loc = strcat(obj.imagedir, 'Images', slash, tog);
-        saveas(l, loc);
+        saveas(thisone, loc);
         pause(obj.figs)
-        close(l);
-
-        % end the plotting function
-        end
-      
+        close(thisone);
+      end
    end
+   
+   
    
 end
