@@ -65,7 +65,7 @@ classdef PlottingClass
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Linear Magnitude','fontsize',15);
            %set(gca,'Ydir','reverse')
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
       
            subplot(2,2,2)
            Yy = fft(obj.R2);
@@ -81,7 +81,7 @@ classdef PlottingClass
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Linear Magnitude','fontsize',15);
            %set(gca,'Ydir','reverse')
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
 
            subplot(2,2,[3, 4])
            Yz = fft(obj.R3);
@@ -97,7 +97,7 @@ classdef PlottingClass
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Linear Magnitude','fontsize',15);
            %set(gca,'Ydir','reverse')
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
            
            % save the figure
            thisplot = ' - freqdomain';
@@ -114,7 +114,7 @@ classdef PlottingClass
            title('Microphone 1: Roof','fontsize',15);
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Decibal Magnitude (dB)','fontsize',15);
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
       
            subplot(2,2,2)
            plot(freq2, db_spec2(1:n2), '-g');
@@ -123,7 +123,7 @@ classdef PlottingClass
            title('Microphone 2: South','fontsize',15);
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Decibal Magnitude (dB)','fontsize',15);
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
 
            subplot(2,2,[3, 4])
            plot(freq3, db_spec3(1:n3), '-r');
@@ -132,7 +132,7 @@ classdef PlottingClass
            title('Microphone 3: North','fontsize',15);
            xlabel('Frequency (Hz)','fontsize',15);
            ylabel('Decibal Magnitude (dB)','fontsize',15);
-           %set(gca,'FontSize',20);
+           set(gca,'FontSize',12);
            
            thisplot = ' - db';
            obj.Putintofiles(thisone2, thisplot);         
@@ -231,7 +231,7 @@ classdef PlottingClass
     plot(obj.right, [-120,0],'--r')
     plot(obj.left, [-120,0],'--r', 'HandleVisibility','off')
     legend({'Microphone 1: Roof', 'Microphone 2: South', 'Microphone 3: North', 'Range'}, 'location', 'northwest')
-    %set(gca,'FontSize',20);
+    set(gca,'FontSize',12);
 
     axis([.5 100 -120 0])
 
@@ -252,7 +252,7 @@ classdef PlottingClass
         ylim([-1 1])
         xlabel('Time (seconds)','fontsize',15)
         ylabel('Pressure [Pa]','fontsize',15)
-        %set(gca,'FontSize',20);
+        set(gca,'FontSize',12);
 
         subplot(2,2,2);
         plot(time,obj.R2, '-g')
@@ -260,7 +260,7 @@ classdef PlottingClass
         ylim([-1 1])
         xlabel('Time (seconds)','fontsize',15)
         ylabel('Pressure [Pa]','fontsize',15)
-        %set(gca,'FontSize',20);
+        set(gca,'FontSize',12);
 
         subplot(2,2,[3,4]);
         plot(time,obj.R3, '-r')
@@ -268,7 +268,7 @@ classdef PlottingClass
         ylim([-1 1])
         xlabel('Time (seconds)','fontsize',15)
         ylabel('Pressure [Pa]','fontsize',15)
-        %set(gca,'FontSize',20);
+        set(gca,'FontSize',12);
 
         thisplot = 'rawdata - ';
         obj.Putintofiles(l, thisplot);
@@ -286,7 +286,4 @@ classdef PlottingClass
         close(thisone);
       end
    end
-   
-   
-   
 end
