@@ -31,21 +31,16 @@ classdef PlottingClass
             % create a time array
            time = linspace(0, 20, 1200000);
            
-           if obj.Range(1) == 0
-               begin = 0;
+           if obj.Range(1) ~= 0
+               start = obj.Range(1) * length(time);
            else 
-               begin = obj.Range(1);
-           end
-           start = begin * length(time);
-           if start == 0
                start = 1;
            end
            
            if obj.Range(2) ~= 1
-               close = obj.Range(2);
-               stop = close * length(time);
+               stop = obj.Range(2) * length(time);
            end
-  
+           
            if exist('stop') == 1
                zz = data(start:stop);
            else
