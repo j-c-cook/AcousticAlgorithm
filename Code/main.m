@@ -23,6 +23,9 @@ end
 
 filename = strcat(date, file);
 
+% for recursion
+a.ytop = 0.04;
+
 % ------- Paths --------- %
 % path to dir with .mat
 path = pwd;

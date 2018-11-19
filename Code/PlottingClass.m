@@ -140,16 +140,16 @@ classdef PlottingClass
                thistitle, 'Frequency (Hz)', 'Linear Magnitude')
            
            if max(amp_specx(1:n1)) > obj.ytop
-               obj.ytop = max(amp_specx(1:n1));
-               %close(thisone);
+               obj.ytop = round(max(amp_specx(1:n1)), 1, 'significant');
+               %clf(thisone, 'reset');
                obj.Perform()
            elseif max(amp_specy(1:n2)) > obj.ytop
-               obj.ytop = max(amp_specy(1:n2));
-               %close(thisone);
+               obj.ytop = round(max(amp_specy(1:n2)), 1, 'significant');
+               %clf(thisone, 'reset');
                obj.Perform()
            elseif max(amp_specz(1:n3)) > obj.ytop
-               obj.ytop = max(amp_specz(1:n3));
-               %close(thisone);
+               obj.ytop = round(max(amp_specz(1:n3)), 1, 'significant');
+               %clf(thisone, 'reset');
                obj.Perform()
            end
            
