@@ -24,6 +24,8 @@ classdef PlottingClass
       R1
       R2
       R3
+      % 
+      ytop
    end
    
    methods
@@ -93,11 +95,10 @@ classdef PlottingClass
            FoldingFreq = fs / 2;
            
            thisone = figure;
-           set(thisone, 'Visible', obj.figs);
-           
-          
-           
+           set(thisone, 'Visible', obj.figs);  
            %% Linear Magnitude (C&W)
+           % this is a recursive function
+           
            
            subplot(2,2,1)
            % pass the object into setting method
@@ -109,7 +110,7 @@ classdef PlottingClass
            
            % plot the stemplots
            thistitle = 'Microphone 1: Roof';
-           obj.stemplots(freq1, amp_specx(1:n1), '-b', 100, 0.05, ...
+           obj.stemplots(freq1, amp_specx(1:n1), '-b', 100, obj.ytop, ...
                thistitle , 'Frequency (Hz)', 'Linear Magnitude')
       
            subplot(2,2,2)
@@ -122,7 +123,7 @@ classdef PlottingClass
            
            % plot the stemplot
            thistitle = 'Microphone 2: South';
-           obj.stemplots(freq2, amp_specy(1:n2), '-g', 100, 0.05, ...
+           obj.stemplots(freq2, amp_specy(1:n2), '-g', 100, obj.ytop, ...
                thistitle , 'Frequency (Hz)', 'Linear Magnitude')
 
            subplot(2,2,[3, 4])
@@ -135,8 +136,22 @@ classdef PlottingClass
            
           % plot the stemplot
            thistitle = 'Microphone 3: North';
-           obj.stemplots(freq3, amp_specz(1:n3), '-r', 100, 0.05, ...
+           obj.stemplots(freq3, amp_specz(1:n3), '-r', 100, obj.ytop, ...
                thistitle, 'Frequency (Hz)', 'Linear Magnitude')
+           
+           if max(amp_specx(1:n1)) > obj.ytop
+               obj.ytop = max(amp_specx(1:n1));
+               %close(thisone);
+               obj.Perform()
+           elseif max(amp_specy(1:n2)) > obj.ytop
+               obj.ytop = max(amp_specy(1:n2));
+               %close(thisone);
+               obj.Perform()
+           elseif max(amp_specz(1:n3)) > obj.ytop
+               obj.ytop = max(amp_specz(1:n3));
+               %close(thisone);
+               obj.Perform()
+           end
            
            % save the figure
            thisplot = ' - freqdomain';
@@ -303,7 +318,6 @@ classdef PlottingClass
         obj.Putintofiles(l, thisplot);
         % end the plotting function
       end
-      
       %% Save the figures
       function [] = Putintofiles(obj, thisone, thisplot)
         type = '.png';
