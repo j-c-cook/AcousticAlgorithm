@@ -30,23 +30,23 @@ classdef PlottingClass
        function setzone = setting(obj, data)
             % create a time array
            time = linspace(0, 20, 1200000);
-           
+           % check if the starting range specified
            if obj.Range(1) ~= 0
                start = obj.Range(1) * length(time);
            else 
                start = 1;
            end
-           
+           % check if ending range specified
            if obj.Range(2) ~= 1
                stop = obj.Range(2) * length(time);
            end
-           
+           % set the range of the input data point, eg. R1, R2 or R3
            if exist('stop') == 1
                zz = data(start:stop);
            else
                zz = data(start:end);
            end
-           
+           % return variable with range to plot
            setzone = zz;
        end
        function [] = Perform(obj)
@@ -54,11 +54,6 @@ classdef PlottingClass
            L = length(obj.R1);
            % the length will always have a certain delta t associated
            timestep = 1200 / L;
-           % the start and the stop view of the data given the range 
-           % ----- Finish Later ----- %
-           % beginning = obj.range(1) * L;
-           % stop = obj.range(2) * L;
-           % ----- 
            
            % sample rate 
            fs = 1 / timestep;        % Hz !
