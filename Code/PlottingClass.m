@@ -56,7 +56,7 @@ classdef PlottingClass
        end
        %% Plot stemplots
        function [] = stemplots(~, freq, ampspec, color, xtop, ytop, thistitle, thisxlabel, thisylabel)
-           stem(freq,ampspec, color);
+           stem(freq, ampspec, color);
            xlim([0 xtop]);
            ylim([0 ytop]);
            title(thistitle,'fontsize',15);
@@ -134,6 +134,11 @@ classdef PlottingClass
             % pass into fourier calculator method
            [freq3, amp_specz, db_spec3, n3] = ...
                obj.fourier(variable3, FoldingFreq);
+           
+           % filter out 60 Hz
+           loc = find(freq3 == 60);
+           amp_specz(loc) = 0;
+           
            
           % plot the stemplot
            thistitle = 'Microphone 3: North';
