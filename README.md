@@ -1,5 +1,5 @@
 # AcousticAlgorithm
--- This repository has an MIT Copyright License and must be cited if used --
+-- The softare in this repository has an MIT Copyright License and must be cited if used --
 
 A repository for locating tornados during development
 
